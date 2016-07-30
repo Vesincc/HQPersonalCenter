@@ -12,10 +12,11 @@
 #import "ThirdTableWidget.h"
 
 
-@interface ViewController () <UITableViewDelegate>
+@interface ViewController () <UITableViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *introduceView;
+@property (nonatomic, strong) UIImageView *userHead;
 
 @property (nonatomic, strong) FirstTableWidget *firstTableView;
 @property (nonatomic, strong) SeondTableWidget *secondTableView;
@@ -53,10 +54,32 @@
     
     [self introduceView];
     
+    [self createUserHead];
     
     
 }
--(UIView *)introduceView {
+
+- (void)createUserHead {
+    
+    UIView *view = [[UIView alloc] init];
+    view.frame = CGRectMake(0, 0, 100, 50);
+//    view.backgroundColor = [UIColor cyanColor];
+    
+    self.userHead = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"userhead"]];
+    self.userHead.frame = CGRectMake(0, 0, 100, 100);
+    self.userHead.center = CGPointMake(50, 45);
+    self.userHead.layer.cornerRadius = 50;
+    self.userHead.layer.masksToBounds = YES;
+    
+    [view addSubview:self.userHead];
+    
+    self.navigationItem.titleView = view;
+    
+    
+
+}
+
+- (UIView *)introduceView {
 
     if (!_introduceView) {
     
@@ -104,27 +127,60 @@
         
         [self.view addSubview:_introduceView];
         
+        
+        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, 50)];
+        name.font = [UIFont systemFontOfSize:25 weight:0.1];
+        name.textAlignment = NSTextAlignmentCenter;
+        name.text = @"HanQi";
+        name.textColor = [UIColor blackColor];
+        
+        UILabel *something = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 30)];
+        something.font = [UIFont systemFontOfSize:15];
+        something.textAlignment = NSTextAlignmentCenter;
+        something.text = @"做一些自己想做的事";
+        
+        UIButton *btnEdit = [[UIButton alloc] init];
+        btnEdit.frame = CGRectMake(0, 0, 120, 40);
+        btnEdit.center = CGPointMake(SCREEN_WIDTH/2, 160);
+        [btnEdit setTitle:@"编辑个人资料" forState:UIControlStateNormal];
+        [btnEdit setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        btnEdit.layer.cornerRadius = 5;
+        btnEdit.layer.masksToBounds = YES;
+        btnEdit.layer.borderColor = [UIColor orangeColor].CGColor;
+        btnEdit.layer.borderWidth = 1.5;
+        btnEdit.titleLabel.font = [UIFont systemFontOfSize:15];
+        
+        [_introduceView addSubview:name];
+        [_introduceView addSubview:something];
+        [_introduceView addSubview:btnEdit];
+        
     }
 
     return _introduceView;
     
 }
 
+
 - (void)btnClick:(UIButton *)button {
+    CGPoint point = CGPointZero;
     switch (button.tag) {
         case 1:
             [self lineMove:1];
+            point.x = 0;
             break;
         case 2:
             [self lineMove:2];
+            point.x = SCREEN_WIDTH;
             break;
         case 3:
             [self lineMove:3];
+            point.x = 2*SCREEN_WIDTH;
             break;
 
           
     }
-
+    
+    _scrollView.contentOffset = point;
 }
 
 - (void)lineMove:(NSInteger)tag {
@@ -207,6 +263,7 @@
         self.thirdTaleView.tableView.delegate = self;
         [self createTableViewHead:self.thirdTaleView.tableView];
         
+        _scrollView.delegate = self;
         
         [self.view addSubview:_scrollView];
        
@@ -297,14 +354,83 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
     NSLog(@"%f", scrollView.contentOffset.y);
+    NSLog(@"%f", scrollView.contentOffset.x);
     
-    if (scrollView.contentOffset.y < 213 && scrollView.contentOffset.y > 0) {
+    if (scrollView.contentOffset.x == 0 && scrollView.contentOffset.y != 0) {
     
-        CGRect fram = self.introduceView.frame;
-        fram.origin.y = -scrollView.contentOffset.y;
-        self.introduceView.frame = fram;
+        if (scrollView.contentOffset.y < 210 && scrollView.contentOffset.y > 0) {
+            
+            self.firstTableView.tableView.contentOffset = scrollView.contentOffset;
+            self.secondTableView.tableView.contentOffset = scrollView.contentOffset;
+            self.thirdTaleView.tableView.contentOffset = scrollView.contentOffset;
+            
+            CGRect fram = self.introduceView.frame;
+            fram.origin.y = -scrollView.contentOffset.y;
+            self.introduceView.frame = fram;
+            
+            
+            CGRect userHeadFram = CGRectZero;
+            userHeadFram.size = CGSizeMake(100-scrollView.contentOffset.y*60/210, 100-scrollView.contentOffset.y*60/210);
+            self.userHead.frame = userHeadFram;
+            self.userHead.center = CGPointMake(50, 45-scrollView.contentOffset.y*20/210);
+            self.userHead.layer.cornerRadius = self.userHead.frame.size.width/2;
+            
+            
+            
+        } else if (scrollView.contentOffset.y <= 0) {
+            
+            CGRect fram = self.introduceView.frame;
+            fram.origin.y = 0;
+            self.introduceView.frame = fram;
+            
+            CGRect userHeadFram = CGRectZero;
+            userHeadFram.size = CGSizeMake(100, 100);
+            self.userHead.frame = userHeadFram;
+            self.userHead.center = CGPointMake(50, 45);
+            self.userHead.layer.cornerRadius = self.userHead.frame.size.width/2;
+            
+        } else if (scrollView.contentOffset.y >= 210) {
+            
+            CGRect fram = self.introduceView.frame;
+            fram.origin.y = -210;
+            self.introduceView.frame = fram;
+            
+            CGRect userHeadFram = CGRectZero;
+            userHeadFram.size = CGSizeMake(40, 40);
+            self.userHead.frame = userHeadFram;
+            self.userHead.center = CGPointMake(50, 25);
+            self.userHead.layer.cornerRadius = self.userHead.frame.size.width/2;
+            
+        }
+    
+    
+    } else if (scrollView.contentOffset.y == 0) {
+        
+        if (scrollView.contentOffset.x == 0) {
+            if (self.introduceView.frame.origin.y != 0) {
+                [self lineMove:1];
+            }
+            
+            
+        } else if (scrollView.contentOffset.x == SCREEN_WIDTH) {
+        
+            [self lineMove:2];
+            
+        } else if (scrollView.contentOffset.x == 2*SCREEN_WIDTH) {
+        
+            [self lineMove:3];
+        
+        }
+    
+    
+    
     
     }
+    
+    
+    
+    
+    
     
 }
 
