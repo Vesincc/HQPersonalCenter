@@ -15,6 +15,10 @@
 		BB20D4ED1D49278700EFF69E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB20D4EB1D49278700EFF69E /* LaunchScreen.storyboard */; };
 		BB20D4F81D49278700EFF69E /* PersonalCenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB20D4F71D49278700EFF69E /* PersonalCenterTests.m */; };
 		BB20D5031D49278700EFF69E /* PersonalCenterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB20D5021D49278700EFF69E /* PersonalCenterUITests.m */; };
+		BB20D5171D4B37F900EFF69E /* TestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB20D5161D4B37F900EFF69E /* TestTableView.m */; };
+		BB20D51A1D4B3DCD00EFF69E /* FirstTableWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = BB20D5191D4B3DCD00EFF69E /* FirstTableWidget.m */; };
+		BB20D5201D4B3E1A00EFF69E /* SeondTableWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = BB20D51F1D4B3E1A00EFF69E /* SeondTableWidget.m */; };
+		BB20D5231D4B3E3500EFF69E /* ThirdTableWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = BB20D5221D4B3E3500EFF69E /* ThirdTableWidget.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,14 @@
 		BB20D4FE1D49278700EFF69E /* PersonalCenterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonalCenterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB20D5021D49278700EFF69E /* PersonalCenterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterUITests.m; sourceTree = "<group>"; };
 		BB20D5041D49278700EFF69E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB20D5151D4B37F900EFF69E /* TestTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableView.h; sourceTree = "<group>"; };
+		BB20D5161D4B37F900EFF69E /* TestTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableView.m; sourceTree = "<group>"; };
+		BB20D5181D4B3DCD00EFF69E /* FirstTableWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstTableWidget.h; path = ../FirstTableWidget.h; sourceTree = "<group>"; };
+		BB20D5191D4B3DCD00EFF69E /* FirstTableWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstTableWidget.m; path = ../FirstTableWidget.m; sourceTree = "<group>"; };
+		BB20D51E1D4B3E1A00EFF69E /* SeondTableWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeondTableWidget.h; sourceTree = "<group>"; };
+		BB20D51F1D4B3E1A00EFF69E /* SeondTableWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeondTableWidget.m; sourceTree = "<group>"; };
+		BB20D5211D4B3E3500EFF69E /* ThirdTableWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdTableWidget.h; sourceTree = "<group>"; };
+		BB20D5221D4B3E3500EFF69E /* ThirdTableWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdTableWidget.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +122,14 @@
 				BB20D4EB1D49278700EFF69E /* LaunchScreen.storyboard */,
 				BB20D4EE1D49278700EFF69E /* Info.plist */,
 				BB20D4DD1D49278700EFF69E /* Supporting Files */,
+				BB20D5151D4B37F900EFF69E /* TestTableView.h */,
+				BB20D5161D4B37F900EFF69E /* TestTableView.m */,
+				BB20D5181D4B3DCD00EFF69E /* FirstTableWidget.h */,
+				BB20D5191D4B3DCD00EFF69E /* FirstTableWidget.m */,
+				BB20D51E1D4B3E1A00EFF69E /* SeondTableWidget.h */,
+				BB20D51F1D4B3E1A00EFF69E /* SeondTableWidget.m */,
+				BB20D5211D4B3E3500EFF69E /* ThirdTableWidget.h */,
+				BB20D5221D4B3E3500EFF69E /* ThirdTableWidget.m */,
 			);
 			path = PersonalCenter;
 			sourceTree = "<group>";
@@ -274,8 +294,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB20D4E51D49278700EFF69E /* ViewController.m in Sources */,
+				BB20D5171D4B37F900EFF69E /* TestTableView.m in Sources */,
+				BB20D5201D4B3E1A00EFF69E /* SeondTableWidget.m in Sources */,
 				BB20D4E21D49278700EFF69E /* AppDelegate.m in Sources */,
 				BB20D4DF1D49278700EFF69E /* main.m in Sources */,
+				BB20D51A1D4B3DCD00EFF69E /* FirstTableWidget.m in Sources */,
+				BB20D5231D4B3E3500EFF69E /* ThirdTableWidget.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +523,7 @@
 				BB20D5091D49278700EFF69E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BB20D50A1D49278700EFF69E /* Build configuration list for PBXNativeTarget "PersonalCenterTests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +532,7 @@
 				BB20D50C1D49278700EFF69E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BB20D50D1D49278700EFF69E /* Build configuration list for PBXNativeTarget "PersonalCenterUITests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +541,7 @@
 				BB20D50F1D49278700EFF69E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
