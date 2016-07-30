@@ -180,7 +180,7 @@
           
     }
     
-    _scrollView.contentOffset = point;
+    [_scrollView setContentOffset:point animated:YES];
 }
 
 - (void)lineMove:(NSInteger)tag {
@@ -406,17 +406,23 @@
     
     } else if (scrollView.contentOffset.y == 0) {
         
-        if (scrollView.contentOffset.x == 0) {
+        if (scrollView.contentOffset.x < SCREEN_WIDTH) {
             if (self.introduceView.frame.origin.y != 0) {
                 [self lineMove:1];
+            } else {
+            
+                if (scrollView == self.scrollView) {
+                    [self lineMove:1];
+                }
+                
             }
             
             
-        } else if (scrollView.contentOffset.x == SCREEN_WIDTH) {
+        } else if (scrollView.contentOffset.x >= SCREEN_WIDTH && scrollView.contentOffset.x < 2*SCREEN_WIDTH) {
         
             [self lineMove:2];
             
-        } else if (scrollView.contentOffset.x == 2*SCREEN_WIDTH) {
+        } else if (scrollView.contentOffset.x >= 2*SCREEN_WIDTH) {
         
             [self lineMove:3];
         
